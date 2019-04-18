@@ -1,169 +1,194 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="a website for us">
-    <meta name="author" content="Brad Phillips">
-    <link rel="shortcut icon" href="assets/ico/favicon.png">
-
-    <title>12/16/18 | Te amo!!</title>
-
-    <!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.css" rel="stylesheet">
-    <!-- Bootstrap theme -->
-    <link href="css/bootstrap-theme.min.css" rel="stylesheet">
-
-    <!-- Custom styles for this template -->
-    <link href="css/theme.css" rel="stylesheet">
-
-    <script src="assets/js/jquery.js"></script>
-	<script src="assets/js/modernizr.js"></script>
-
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-      <script src="assets/js/html5shiv.js"></script>
-      <script src="assets/js/respond.min.js"></script>
-    <![endif]-->
-  </head>
-
-  	<body onload="onInit();">
-			<h1 id="total" style="text-align:center">Total: 0</h1>
+<html>
+<head>
+  <title>Hogi &amp; Andrea <3</title>
+  <style>
+  html, body {
+    margin: 0;
+  }
+  body {
+    background: black;
+  }
+  canvas {
+    border: 1px solid white;
+  }
+  </style>
+</head>
+<body style="color:white">
+    <div style="width:100%; float:left;position: relative"><h1>Felices 8 Quincenas!!!</h1></div>
+    <div  id="count" style="float:left;position: relative;font-size: 14pt;width:100%;margin-bottom: 20px;">0</div>
+    <div id="gm" style="width:100%; float:left;position: relative">
+            <canvas width="400" height="400" id="game"></canvas>
+    </div>
+    <div id="txt" style="width:100%; float:left;position: relative;text-align:justify;color: white;display: none">
+        Hola mi amor!!, Como estas? bueno solo dormi una hora hoy, pero aqui estamos,
+        tenia pendiente hacer esto, queria acabarlo para el 16, perdon por tardarme 2 dias, 
+        tipico problema de desarrollo :p jajaja, sabes, se que no  han sido estos los mejores dias, 
+        sea por el hecho de que peleamos, de que noe stamos juntos, de que no nos vemos, no se, 
+        me desespera, me frustra, me pone triste y se que a ti tambien, se tambien que no soy de la 
+        mejor ayuda en estos momentos, se que en vez de sentir tal vez mi apoyo sientes como digo yo "que no te estoy
+        apoyando" te amo sabes, la verdad es que desde el inicio te metiste bien cabron en mi mente, 
+        corazon, en mi vida, y en cada rincon de mi ser, dicen que las mejores cosas cuestan un poco mas
+        de lo normal, vaya que esto nos cuesta a veces mas de lo normal, quiero creer que es porque
+        ambos somos lo mejor de lo mejor, perdon por aveces en mi desesperacion ofrecerte que te vayas,
+        pero falta de comunicacion, no pense que lo hicieras como para dejarme claro que tambien haces cosas
+        por mi, y por aclarar qu eno te cuesta hacer o dejar de hacerlas, te amo un chingo andrea en verdad, 
+        y ni de broma pasa por mi mente dejarte ir, ni irme yo, neta que eres tu o no es nadie, y no pienso tirar
+        la toalla, mi plan es neta usar todas las cartas disponibles que me queden, incluso las que esten 
+        debajo de mi manga, eres lo mejor que me esta pasando en verdad, neta que tal vez no parece pero soy 
+        feliz como hace demasiaaaado no lo era, no me siento solo, como siepmre me senti, no me siento
+        solo en la vida, en el mundo, se que te tengo a ti, se que cuento contigo y eso me hace sentir en verdad 
+        muy a gusto aqui, con nuestros planes a futuro, neta que muero por quedarme toda la vida contigo y mas a delante
+        solo recordar, voltear a tras y ver que valio la pena, valio la pena trabajar en algo que al final
+        triunfo, que al final de todo lo que se trabajo en esto rindio frutos, insisto, te amo mucho, en verdad
+        eres la mejor pinche novia, la mejor en verdad, eres la mas hermosa, la mas chula, neta me encantas bien cabron 
+        amor, pero bien cabron, tus ojos, tus nalgas, tus pechos, tu sonrisa, tus nalgas, tus pies, tu voz, 
+        tus nalgas, tus manos en mi carita, tus nalgas, tus risas, tus ocurrencias, tus nalgas <3 jajaja, te amo mucho
+        perdon si a veces te hago dudar de ello, pero creeme que te amo con tosas mis fuerzas, y solo quiero que siempre
+        siempre estemos a gusto, estemos completos para que de esa forma estemos siempre juntos, te amooo, espero te haya gustado esta sorpresa
+        y no te haya estresado tanto, te amoooo!!! un chingo en verdad!!! siempre siempre tu mi mejor opcion, mi mejor apuesta
+        mi mejor compania, amiga, amante, mi mejor persona <3 te amooo!!!!! y nuevamente gracias por compartir 4 meses de tu vida
+        a mi lado, edjarme ser parte de tu vida.
+    </div>
+<script>
+var canvas = document.getElementById('game');
+var context = canvas.getContext('2d');
+var grid = 16;
+var count = 0;
+  
+var snake = {
+  x: 160,
+  y: 160,
+  
+  // snake velocity. moves one grid length every frame in either the x or y direction
+  dx: grid,
+  dy: 0,
+  
+  // keep track of all grids the snake body occupies
+  cells: [],
+  
+  // length of the snake. grows when eating an apple
+  maxCells: 4
+};
+var apple = {
+  x: 320,
+  y: 320
+};
+// get random whole numbers in a specific range
+// @see https://stackoverflow.com/a/1527820/2124254
+function getRandomInt(min, max) {
+  return Math.floor(Math.random() * (max - min)) + min;
+}
+// game loop
+function loop() {
+  requestAnimationFrame(loop);
+  // slow game loop to 15 fps instead of 60 (60/15 = 4)
+  if (++count < 4) {
+    return;
+  }
+  count = 0;
+  context.clearRect(0,0,canvas.width,canvas.height);
+  // move snake by it's velocity
+  snake.x += snake.dx;
+  snake.y += snake.dy;
+  // wrap snake position horizontally on edge of screen
+  if (snake.x < 0) {
+    snake.x = canvas.width - grid;
+  }
+  else if (snake.x >= canvas.width) {
+    snake.x = 0;
+  }
+  
+  // wrap snake position vertically on edge of screen
+  if (snake.y < 0) {
+    snake.y = canvas.height - grid;
+  }
+  else if (snake.y >= canvas.height) {
+    snake.y = 0;
+  }
+  // keep track of where snake has been. front of the array is always the head
+  snake.cells.unshift({x: snake.x, y: snake.y});
+  // remove cells as we move away from them
+  if (snake.cells.length > snake.maxCells) {
+    snake.cells.pop();
+  }
+  // draw apple
+  context.fillStyle = 'red';
+  context.fillRect(apple.x, apple.y, grid-1, grid-1);
+  // draw snake one cell at a time
+  context.fillStyle = 'green';
+  snake.cells.forEach(function(cell, index) {
     
-		<div class="content container" id="game">
-
-			<div class="game-board">
-				<ul class="column" data-column="1">
-					<li class="jewel-wrap tile" data-order="8"></li>
-					<li class="jewel-wrap tile" data-order="7"></li>
-					<li class="jewel-wrap tile" data-order="6"></li>
-					<li class="jewel-wrap tile" data-order="5"></li>
-					<li class="jewel-wrap tile" data-order="4"></li>
-					<li class="jewel-wrap tile" data-order="3"></li>
-					<li class="jewel-wrap tile" data-order="2"></li>
-					<li class="jewel-wrap tile" data-order="1"></li>
-				</ul>
-				<ul class="column" data-column="2">
-					<li class="jewel-wrap tile" data-order="8"></li>
-					<li class="jewel-wrap tile" data-order="7"></li>
-					<li class="jewel-wrap tile" data-order="6"></li>
-					<li class="jewel-wrap tile" data-order="5"></li>
-					<li class="jewel-wrap tile" data-order="4"></li>
-					<li class="jewel-wrap tile" data-order="3"></li>
-					<li class="jewel-wrap tile" data-order="2"></li>
-					<li class="jewel-wrap tile" data-order="1"></li>
-				</ul>
-				<ul class="column" data-column="3">
-					<li class="jewel-wrap tile" data-order="8"></li>
-					<li class="jewel-wrap tile" data-order="7"></li>
-					<li class="jewel-wrap tile" data-order="6"></li>
-					<li class="jewel-wrap tile" data-order="5"></li>
-					<li class="jewel-wrap tile" data-order="4"></li>
-					<li class="jewel-wrap tile" data-order="3"></li>
-					<li class="jewel-wrap tile" data-order="2"></li>
-					<li class="jewel-wrap tile" data-order="1"></li>
-				</ul>
-				<ul class="column" data-column="4">
-					<li class="jewel-wrap tile" data-order="8"></li>
-					<li class="jewel-wrap tile" data-order="7"></li>
-					<li class="jewel-wrap tile" data-order="6"></li>
-					<li class="jewel-wrap tile" data-order="5"></li>
-					<li class="jewel-wrap tile" data-order="4"></li>
-					<li class="jewel-wrap tile" data-order="3"></li>
-					<li class="jewel-wrap tile" data-order="2"></li>
-					<li class="jewel-wrap tile" data-order="1"></li>
-				</ul>
-				<ul class="column" data-column="5">
-					<li class="jewel-wrap tile" data-order="8"></li>
-					<li class="jewel-wrap tile" data-order="7"></li>
-					<li class="jewel-wrap tile" data-order="6"></li>
-					<li class="jewel-wrap tile" data-order="5"></li>
-					<li class="jewel-wrap tile" data-order="4"></li>
-					<li class="jewel-wrap tile" data-order="3"></li>
-					<li class="jewel-wrap tile" data-order="2"></li>
-					<li class="jewel-wrap tile" data-order="1"></li>
-				</ul>
-				<ul class="column" data-column="6">
-					<li class="jewel-wrap tile" data-order="8"></li>
-					<li class="jewel-wrap tile" data-order="7"></li>
-					<li class="jewel-wrap tile" data-order="6"></li>
-					<li class="jewel-wrap tile" data-order="5"></li>
-					<li class="jewel-wrap tile" data-order="4"></li>
-					<li class="jewel-wrap tile" data-order="3"></li>
-					<li class="jewel-wrap tile" data-order="2"></li>
-					<li class="jewel-wrap tile" data-order="1"></li>
-				</ul>
-				<ul class="column" data-column="7">
-					<li class="jewel-wrap tile" data-order="8"></li>
-					<li class="jewel-wrap tile" data-order="7"></li>
-					<li class="jewel-wrap tile" data-order="6"></li>
-					<li class="jewel-wrap tile" data-order="5"></li>
-					<li class="jewel-wrap tile" data-order="4"></li>
-					<li class="jewel-wrap tile" data-order="3"></li>
-					<li class="jewel-wrap tile" data-order="2"></li>
-					<li class="jewel-wrap tile" data-order="1"></li>
-				</ul>
-				<ul class="column" data-column="8">
-					<li class="jewel-wrap tile" data-order="8"></li>
-					<li class="jewel-wrap tile" data-order="7"></li>
-					<li class="jewel-wrap tile" data-order="6"></li>
-					<li class="jewel-wrap tile" data-order="5"></li>
-					<li class="jewel-wrap tile" data-order="4"></li>
-					<li class="jewel-wrap tile" data-order="3"></li>
-					<li class="jewel-wrap tile" data-order="2"></li>
-					<li class="jewel-wrap tile" data-order="1"></li>
-				</ul>
-			</div>
-
-		</div>
-		<div id="letter" class="container">
-			<div class="row">	
-				<div class="col-md-4 col-md-offset-4" style="text-align:justify">
-					Hola mi amor, sabes tarde mas de lo esperado de hecho te debiste haber topado con algunos
-					errores como que solo hacia o horizontal o vertical, o como que tal vez cuando rompias
-					algunos y se acomodaban si quedaban juntos no se rompian, jejeje, creo que llevo rato
-					ya en esto y ya queria dartelo, se que tal vez estos dias pasados no han sido del todo 
-					"buenos dias" puesto que tal vez e andado un poco como dandole vueltas a muchas cosas, 
-					se que puedo llegar a ser un poco (jiji o mucho) complicado, no creo estar loco solo tal vez
-					mi cabeza se debe mantener ocupada, intente con esta "sorpresa" y creo que funciono, tal 
-					vez no como esperaba porque me estresaba a veces, pero bueno ya, sin llorar, se que no ha
-					habido tantas cartas, se que tal vez los detalles disminuyeron, pero mira, aqui te tuve espero 
-					no tanto tiempo como para estresarte jajaja, te amo, hoy no es una carta o detalle fisico, 
-					hoy te entrego algo que bueno es un tanto digital pero con mucho valor sentimental 
-					amo lo que hago, en verdad, tal vez a veces me quejo, pero creeme que no es porque odie 
-					lo que hago, y entonces, hoy se fucionan al fin 2 cosas, lo que amo hacer y a quien amo 
-					hacerselo jajajaja, siempre caliente nunca incaliente jajaja, tenias que hacer 110 puntos o mas, 
-					porque hoy son 110 dias de estar juntos, de compartir a tu lado muchos momentos unicos, 
-					tanto buenos como malos, me has ensenado a amarte, a valorar el tiempo que estamos juntos, 
-					me has ensenado paciencia, me estas demostrando que al igual que yo amo el estar contigo tu 
-					tambien lo amas, cada uno de los momentos vividos se quedan conmigo, se que tal vez los malos no 
-					quisieras, pero me quedo porque en el futuro los solucionas y esos recuerdos hacen que valore 
-					el esfuerzo que tambien pones a esta relacion, el esfuerzo que dia a dia tomas para hacerme feliz 
-					y demostrarme que me amas (aunque yo te ame mas) jijijiji, gracias en verdad por este tiempo 
-					que para muchos tal vez es poco pero creo que he vivido mucho contigo, hay una pelicula 
-					que dice (de motos) "Se vive mucho más llevando una moto 5 minutos a maxima velocidad de lo que muchos viven toda su vida"
-					no eres una moto, ni vamos a maxima velocidad siempre, pero el punto es que me has hecho vivir 
-					demasiadas hermosas experiencias en tan poco tiempo, me has ensenado que no siempre hay que correr 
-					que a veces hace falta detenerte, pensar las cosas, o tal vez solo detenerte a observar aquello 
-					que pasa, como ayer, viendo el mar, me gusto verte viendolo sabes, me encanta que de nosotros
-					creo tu forma de "calma" ayuda mucho a mi forma "acelerada", bueno, te dejo porque ya me estas
-					mandando mensajes de que esperas a ana en el gym y yo aqui sin contestarte, esta vez no menti, si jugue 
-					y despues hice esto, llevo ya unos dias, estuvo entretenido, y solo me agarro la loquera porque 
-					esto nunca lo habia hecho sabes, jajajaja, pero ya me gusto, TE AMO!!! nunca lo olvides
-					te amo demasiado, sigues siendo lo mejor que me esta pasando, sigo queriendo todo contigo, 
-					eres la mujer mas hermosa para mi, y la mejor opcion siempre, con amor <b>pks }8)</b>
-				</div>
-			</div>
-		</div>
+    // drawing 1 px smaller than the grid creates a grid effect in the snake body so you can see how long it is
+    context.fillRect(cell.x, cell.y, grid-1, grid-1);  
+    // snake ate apple
+    if (cell.x === apple.x && cell.y === apple.y) {
+      snake.maxCells++;
+      var count = document.getElementById("count");
+      count.innerHTML = snake.maxCells;
+      // canvas is 400x400 which is 25x25 grids 
+      apple.x = getRandomInt(0, 25) * grid;
+      apple.y = getRandomInt(0, 25) * grid;
+      if(snake.maxCells >= 123){
+        showLetterAndHideGame();
+      }
+    }
+    // check collision with all cells after this one (modified bubble sort)
+    for (var i = index + 1; i < snake.cells.length; i++) {
+      
+      // snake occupies same space as a body part. reset game
+      if (cell.x === snake.cells[i].x && cell.y === snake.cells[i].y) {
+        snake.x = 160;
+        snake.y = 160;
+        snake.cells = [];
+        snake.maxCells = 4;
+        snake.dx = grid;
+        snake.dy = 0;
+        apple.x = getRandomInt(0, 25) * grid;
+        apple.y = getRandomInt(0, 25) * grid;
+      }
+    }
+  });
+}
+// listen to keyboard events to move the snake
+document.addEventListener('keydown', function(e) {
+  // prevent snake from backtracking on itself by checking that it's 
+  // not already moving on the same axis (pressing left while moving
+  // left won't do anything, and pressing right while moving left
+  // shouldn't let you collide with your own body)
+  
+  // left arrow key
+  if (e.which === 37 && snake.dx === 0) {
+    snake.dx = -grid;
+    snake.dy = 0;
+  }
+  // up arrow key
+  else if (e.which === 38 && snake.dy === 0) {
+    snake.dy = -grid;
+    snake.dx = 0;
+  }
+  // right arrow key
+  else if (e.which === 39 && snake.dx === 0) {
+    snake.dx = grid;
+    snake.dy = 0;
+  }
+  // down arrow key
+  else if (e.which === 40 && snake.dy === 0) {
+    snake.dy = grid;
+    snake.dx = 0;
+  }
+});
+// start the game
+requestAnimationFrame(loop);
 
 
-    	<!-- Bootstrap core JavaScript
-    	================================================== -->
-    	<!-- Placed at the end of the document so the pages load faster -->
-		<script src="js/bootstrap.min.js"></script>
-		<script src="assets/js/holder.js"></script>
-		<script src="js/jquery.transit.min.js"></script>
-		
-		<script src="js/scripts.js"></script>
-	</body>
+function showLetterAndHideGame(){
+    var txt = document.getElementById("txt");
+    var game = document.getElementById("gm");
+
+    txt.setAttribute("style","display:inline");
+    game.setAttribute("style","display:none");
+}
+</script>
+</body>
 </html>

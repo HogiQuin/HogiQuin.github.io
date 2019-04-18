@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="a website for us">
+    <meta name="author" content="Brad Phillips">
+    <link rel="shortcut icon" href="assets/ico/favicon.png">
+
+    <title>12/16/18 | Te amo!!</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <!-- Bootstrap theme -->
+    <link href="css/bootstrap-theme.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/theme.css" rel="stylesheet">
+
+    <script src="assets/js/jquery.js"></script>
+	<script src="assets/js/modernizr.js"></script>
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="assets/js/html5shiv.js"></script>
+      <script src="assets/js/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  	<body onload="onInit();">
+			<h1 id="total" style="text-align:center">Total: 0</h1>
+    
+		<div class="content container" id="game">
+
+			<div class="game-board">
+				<ul class="column" data-column="1">
+					<li class="jewel-wrap tile" data-order="8"></li>
+					<li class="jewel-wrap tile" data-order="7"></li>
+					<li class="jewel-wrap tile" data-order="6"></li>
+					<li class="jewel-wrap tile" data-order="5"></li>
+					<li class="jewel-wrap tile" data-order="4"></li>
+					<li class="jewel-wrap tile" data-order="3"></li>
+					<li class="jewel-wrap tile" data-order="2"></li>
+					<li class="jewel-wrap tile" data-order="1"></li>
+				</ul>
+				<ul class="column" data-column="2">
+					<li class="jewel-wrap tile" data-order="8"></li>
+					<li class="jewel-wrap tile" data-order="7"></li>
+					<li class="jewel-wrap tile" data-order="6"></li>
+					<li class="jewel-wrap tile" data-order="5"></li>
+					<li class="jewel-wrap tile" data-order="4"></li>
+					<li class="jewel-wrap tile" data-order="3"></li>
+					<li class="jewel-wrap tile" data-order="2"></li>
+					<li class="jewel-wrap tile" data-order="1"></li>
+				</ul>
+				<ul class="column" data-column="3">
+					<li class="jewel-wrap tile" data-order="8"></li>
+					<li class="jewel-wrap tile" data-order="7"></li>
+					<li class="jewel-wrap tile" data-order="6"></li>
+					<li class="jewel-wrap tile" data-order="5"></li>
+					<li class="jewel-wrap tile" data-order="4"></li>
+					<li class="jewel-wrap tile" data-order="3"></li>
+					<li class="jewel-wrap tile" data-order="2"></li>
+					<li class="jewel-wrap tile" data-order="1"></li>
+				</ul>
+				<ul class="column" data-column="4">
+					<li class="jewel-wrap tile" data-order="8"></li>
+					<li class="jewel-wrap tile" data-order="7"></li>
+					<li class="jewel-wrap tile" data-order="6"></li>
+					<li class="jewel-wrap tile" data-order="5"></li>
+					<li class="jewel-wrap tile" data-order="4"></li>
+					<li class="jewel-wrap tile" data-order="3"></li>
+					<li class="jewel-wrap tile" data-order="2"></li>
+					<li class="jewel-wrap tile" data-order="1"></li>
+				</ul>
+				<ul class="column" data-column="5">
+					<li class="jewel-wrap tile" data-order="8"></li>
+					<li class="jewel-wrap tile" data-order="7"></li>
+					<li class="jewel-wrap tile" data-order="6"></li>
+					<li class="jewel-wrap tile" data-order="5"></li>
+					<li class="jewel-wrap tile" data-order="4"></li>
+					<li class="jewel-wrap tile" data-order="3"></li>
+					<li class="jewel-wrap tile" data-order="2"></li>
+					<li class="jewel-wrap tile" data-order="1"></li>
+				</ul>
+				<ul class="column" data-column="6">
+					<li class="jewel-wrap tile" data-order="8"></li>
+					<li class="jewel-wrap tile" data-order="7"></li>
+					<li class="jewel-wrap tile" data-order="6"></li>
+					<li class="jewel-wrap tile" data-order="5"></li>
+					<li class="jewel-wrap tile" data-order="4"></li>
+					<li class="jewel-wrap tile" data-order="3"></li>
+					<li class="jewel-wrap tile" data-order="2"></li>
+					<li class="jewel-wrap tile" data-order="1"></li>
+				</ul>
+				<ul class="column" data-column="7">
+					<li class="jewel-wrap tile" data-order="8"></li>
+					<li class="jewel-wrap tile" data-order="7"></li>
+					<li class="jewel-wrap tile" data-order="6"></li>
+					<li class="jewel-wrap tile" data-order="5"></li>
+					<li class="jewel-wrap tile" data-order="4"></li>
+					<li class="jewel-wrap tile" data-order="3"></li>
+					<li class="jewel-wrap tile" data-order="2"></li>
+					<li class="jewel-wrap tile" data-order="1"></li>
+				</ul>
+				<ul class="column" data-column="8">
+					<li class="jewel-wrap tile" data-order="8"></li>
+					<li class="jewel-wrap tile" data-order="7"></li>
+					<li class="jewel-wrap tile" data-order="6"></li>
+					<li class="jewel-wrap tile" data-order="5"></li>
+					<li class="jewel-wrap tile" data-order="4"></li>
+					<li class="jewel-wrap tile" data-order="3"></li>
+					<li class="jewel-wrap tile" data-order="2"></li>
+					<li class="jewel-wrap tile" data-order="1"></li>
+				</ul>
+			</div>
+
+		</div>
+		<div id="letter" class="container">
+			<div class="row">	
+				<div class="col-md-4 col-md-offset-4" style="text-align:justify">
+					Hola mi amor, sabes tarde mas de lo esperado de hecho te debiste haber topado con algunos
+					errores como que solo hacia o horizontal o vertical, o como que tal vez cuando rompias
+					algunos y se acomodaban si quedaban juntos no se rompian, jejeje, creo que llevo rato
+					ya en esto y ya queria dartelo, se que tal vez estos dias pasados no han sido del todo 
+					"buenos dias" puesto que tal vez e andado un poco como dandole vueltas a muchas cosas, 
+					se que puedo llegar a ser un poco (jiji o mucho) complicado, no creo estar loco solo tal vez
+					mi cabeza se debe mantener ocupada, intente con esta "sorpresa" y creo que funciono, tal 
+					vez no como esperaba porque me estresaba a veces, pero bueno ya, sin llorar, se que no ha
+					habido tantas cartas, se que tal vez los detalles disminuyeron, pero mira, aqui te tuve espero 
+					no tanto tiempo como para estresarte jajaja, te amo, hoy no es una carta o detalle fisico, 
+					hoy te entrego algo que bueno es un tanto digital pero con mucho valor sentimental 
+					amo lo que hago, en verdad, tal vez a veces me quejo, pero creeme que no es porque odie 
+					lo que hago, y entonces, hoy se fucionan al fin 2 cosas, lo que amo hacer y a quien amo 
+					hacerselo jajajaja, siempre caliente nunca incaliente jajaja, tenias que hacer 110 puntos o mas, 
+					porque hoy son 110 dias de estar juntos, de compartir a tu lado muchos momentos unicos, 
+					tanto buenos como malos, me has ensenado a amarte, a valorar el tiempo que estamos juntos, 
+					me has ensenado paciencia, me estas demostrando que al igual que yo amo el estar contigo tu 
+					tambien lo amas, cada uno de los momentos vividos se quedan conmigo, se que tal vez los malos no 
+					quisieras, pero me quedo porque en el futuro los solucionas y esos recuerdos hacen que valore 
+					el esfuerzo que tambien pones a esta relacion, el esfuerzo que dia a dia tomas para hacerme feliz 
+					y demostrarme que me amas (aunque yo te ame mas) jijijiji, gracias en verdad por este tiempo 
+					que para muchos tal vez es poco pero creo que he vivido mucho contigo, hay una pelicula 
+					que dice (de motos) "Se vive mucho más llevando una moto 5 minutos a maxima velocidad de lo que muchos viven toda su vida"
+					no eres una moto, ni vamos a maxima velocidad siempre, pero el punto es que me has hecho vivir 
+					demasiadas hermosas experiencias en tan poco tiempo, me has ensenado que no siempre hay que correr 
+					que a veces hace falta detenerte, pensar las cosas, o tal vez solo detenerte a observar aquello 
+					que pasa, como ayer, viendo el mar, me gusto verte viendolo sabes, me encanta que de nosotros
+					creo tu forma de "calma" ayuda mucho a mi forma "acelerada", bueno, te dejo porque ya me estas
+					mandando mensajes de que esperas a ana en el gym y yo aqui sin contestarte, esta vez no menti, si jugue 
+					y despues hice esto, llevo ya unos dias, estuvo entretenido, y solo me agarro la loquera porque 
+					esto nunca lo habia hecho sabes, jajajaja, pero ya me gusto, TE AMO!!! nunca lo olvides
+					te amo demasiado, sigues siendo lo mejor que me esta pasando, sigo queriendo todo contigo, 
+					eres la mujer mas hermosa para mi, y la mejor opcion siempre, con amor <b>pks }8)</b>
+				</div>
+			</div>
+		</div>
+
+
+    	<!-- Bootstrap core JavaScript
+    	================================================== -->
+    	<!-- Placed at the end of the document so the pages load faster -->
+		<script src="js/bootstrap.min.js"></script>
+		<script src="assets/js/holder.js"></script>
+		<script src="js/jquery.transit.min.js"></script>
+		
+		<script src="js/scripts.js"></script>
+	</body>
+</html>
